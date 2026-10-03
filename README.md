@@ -4,6 +4,8 @@ A full-screen scrolling page: a hero that types itself, photo bands that slide i
 
 ## Live demo
 
+https://enter-the-matrix-3i93.vercel.app/
+
 ```bash
 npm install
 npm run dev
