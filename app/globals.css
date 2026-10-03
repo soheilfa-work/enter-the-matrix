@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #00ff41;
+  --matrix: #00ff41;
+  --matrix-dim: #0b7a32;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-matrix: var(--font-matrix-face);
+}
+
+html,
+body {
+  background: #000000;
+  color: var(--matrix);
+}
+
+body {
+  font-family: var(--font-matrix-face), var(--font-mono), monospace;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@keyframes holo-flicker {
+  0%,
+  19%,
+  21%,
+  100% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.72;
+  }
+}
+
+@keyframes holo-scan {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(420%);
+  }
+}
+
+@keyframes holo-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.holo-flicker {
+  animation: holo-flicker 4.8s steps(1) infinite;
+}
+
+.holo-scan {
+  animation: holo-scan 3.6s linear infinite;
+}
+
+.holo-caret {
+  animation: holo-caret 1s steps(1) infinite;
+}
+
+@keyframes matrix-chevron {
+  0% {
+    opacity: 0.15;
+    transform: translateY(-6px);
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+    transform: translateY(10px);
+  }
+}
+
+.matrix-chevron {
+  animation: matrix-chevron 1.35s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.9));
+}
+
+@keyframes bar-trace {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.bar-trace {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 2px;
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.bar-trace-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  aspect-ratio: 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 248deg,
+    rgba(0, 255, 65, 0.15) 286deg,
+    #00ff41 332deg,
+    #eaffe8 348deg,
+    transparent 360deg
+  );
+  filter: drop-shadow(0 0 6px #00ff41);
+  animation: bar-trace 3.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matrix-chevron {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .bar-trace-spin {
+    animation: none;
+    background: rgba(0, 255, 65, 0.75);
+    filter: none;
+  }
+}
